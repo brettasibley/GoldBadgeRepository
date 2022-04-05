@@ -2,7 +2,7 @@
 {
     public MenuItem (){}
 
-    public MenuItem (int mealNumber, string mealName, string mealDescription, string listOfIngredients, decimal mealPrice)
+    public MenuItem (int mealNumber, string mealName, string mealDescription, string listOfIngredients, double mealPrice)
     {
         MealNumber = mealNumber;
         MealName = mealName;
@@ -15,5 +15,5 @@
     public string MealName { get; set; }
     public string MealDescription { get; set; }
     public string ListOfIngredients { get; set; }
-    public decimal MealPrice { get; set; }
+    public double MealPrice { get; set; }
 }
