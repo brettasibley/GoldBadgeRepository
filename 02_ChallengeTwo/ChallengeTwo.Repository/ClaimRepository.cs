@@ -1,29 +1,30 @@
 ﻿public class ClaimRepository
 {
-    private readonly List<Claim> _claimDatabase = new List<Claim>();
-    private int _count;
-    public List<Claim> ViewAllClaims()
+    private readonly Queue<Claim> _cQueue = new Queue<Claim>();
+    private int _count = 0;
+    public Queue<Claim> ViewAllClaims()
     {
-        return _claimDatabase;
+        return _cQueue;
     }
-
-    public Claim PeekTopMostClaim()
+    public Claim PeekTopClaim()
     {
-        return _claimDatabase.Last();
+        if(_cQueue.Count > 0)
+        {
+            var claim = _cQueue.Peek();
+            return claim;
+        }
+        else
+        {
+            return null;
+        }
     }
-
-    public void DealWithTopMostClaim()
-    {
-        _claimDatabase.RemoveAt(_claimDatabase.Count-1);
-    }
-
-    public bool AddNewClaim(Claim claim)
+    public bool AddNewClaimToQueue(Claim claim)
     {
         if(claim != null)
         {
             _count++;
             claim.ID = _count;
-            _claimDatabase.Add(claim);
+            _cQueue.Enqueue(claim);
             return true;
         }
         else

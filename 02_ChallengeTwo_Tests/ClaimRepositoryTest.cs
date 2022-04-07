@@ -3,11 +3,11 @@ using Xunit;
 public class ClaimRepositoryTest
 {
     [Fact]
-    public void ViewAllClaimsTest()
+    public void ViewAllClaims()
     {
-        List<Claim> expectedClaimsList = new List<Claim>();
-        expectedClaimsList.Add(new Claim("Brian"));
-        expectedClaimsList.Add(new Claim("Brett"));
+        Queue<Claim> expectedClaimsList = new Queue<Claim>();
+        expectedClaimsList.Enqueue(new Claim("Brian"));
+        expectedClaimsList.Enqueue(new Claim("Brett"));
 
         ClaimRepository repository = new ClaimRepository();
         Assert.Equal(expectedClaimsList, repository.ViewAllClaims());
