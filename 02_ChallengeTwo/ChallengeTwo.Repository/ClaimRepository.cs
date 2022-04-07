@@ -8,7 +8,7 @@
     }
     public Claim PeekTopClaim()
     {
-        if(_cQueue.Count > 0)
+        if (_cQueue.Count > 0)
         {
             var claim = _cQueue.Peek();
             return claim;
@@ -20,7 +20,7 @@
     }
     public bool AddNewClaimToQueue(Claim claim)
     {
-        if(claim != null)
+        if (claim != null)
         {
             _count++;
             claim.ID = _count;
@@ -31,5 +31,16 @@
         {
             return false;
         }
+    }
+
+    public bool PullOffTopOfQueue()
+    {
+        var claim = PeekTopClaim();
+        if (claim != null)
+        {
+            return false;
+        }
+        _cQueue.Dequeue();
+        return true;
     }
 }

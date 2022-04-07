@@ -6,8 +6,6 @@ public class ClaimRepositoryTest
     public void ViewAllClaims()
     {
         Queue<Claim> expectedClaimsList = new Queue<Claim>();
-        expectedClaimsList.Enqueue(new Claim("Brian"));
-        expectedClaimsList.Enqueue(new Claim("Brett"));
 
         ClaimRepository repository = new ClaimRepository();
         Assert.Equal(expectedClaimsList, repository.ViewAllClaims());
