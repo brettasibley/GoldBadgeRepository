@@ -36,7 +36,7 @@
     public bool PullOffTopOfQueue()
     {
         var claim = PeekTopClaim();
-        if (claim != null)
+        if (claim == null)
         {
             return false;
         }
