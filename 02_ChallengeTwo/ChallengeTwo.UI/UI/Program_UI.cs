@@ -70,6 +70,8 @@ public class Program_UI
         "1. Car\n"+
         "2. Home\n"+
         "3. Theft\n");
+        var claimType = int.Parse(Console.ReadLine());
+        newClaim.ClaimType = (ClaimType)claimType;
 
         System.Console.WriteLine("Please enter a description of the claim:");
         newClaim.ClaimDescription = Console.ReadLine();
@@ -83,17 +85,6 @@ public class Program_UI
         System.Console.WriteLine("Please enter the date of the claim:");
         newClaim.DateOfClaim = DateTime.Parse(Console.ReadLine());
 
-        System.Console.WriteLine("Is this claim valid?:");
-        var userInput = Console.ReadLine();
-        if(userInput == "Y".ToLower())
-        {
-            newClaim.IsValid = true;
-        }
-        else
-        {
-            newClaim.IsValid = false;
-        }
-
         bool isSuccessful = _cRepo.AddNewClaimToQueue(newClaim);
         if(isSuccessful)
         {
@@ -103,7 +94,7 @@ public class Program_UI
         {
             System.Console.WriteLine("Claim failed to be added to the queue");
         }
-        
+
         PressAnyKeyToContinue();
     }
 
@@ -172,8 +163,8 @@ public class Program_UI
 
     private void SeedData()
     {
-        var carClaim = new Claim(ClaimType.Car, "Car accident", 100m, new DateTime(2022, 4, 6), new DateTime(2022, 4, 7), true);
-        var houseClaim = new Claim(ClaimType.Home, "House fire", 500m, new DateTime(2022, 3, 31), new DateTime(2022, 4, 1), true);
+        var carClaim = new Claim(ClaimType.Car, "Car accident", 100m, new DateTime(2022, 4, 6), new DateTime(2022, 4, 7));
+        var houseClaim = new Claim(ClaimType.Home, "House fire", 500m, new DateTime(2022, 3, 31), new DateTime(2022, 4, 1));
 
         _cRepo.AddNewClaimToQueue(carClaim);
         _cRepo.AddNewClaimToQueue(houseClaim);
