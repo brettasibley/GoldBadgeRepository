@@ -2,7 +2,8 @@
 {
     private readonly Dictionary<int, Badge> BadgeList = new Dictionary<int, Badge>();
     private int _count = 0;
-    public bool AddBadgeToList(Badge badge)
+
+    public bool CreateNewBadge(Badge badge)
     {
         if(badge != null)
         {
@@ -18,16 +19,43 @@
     {
         return BadgeList;
     }
-
-    public Badge GetBadgeByKey(int userKeyInput)
+    // GetBadgeByKey is our helper method
+    public Badge GetBadgeByKey(int Key)
     {
-        foreach(KeyValuePair<int,Badge> badge in BadgeList)
+        foreach(var BadgeKV in BadgeList)
         {
-            if(badge.Key == userKeyInput)
+            if(BadgeKV.Key == Key)
             {
-                return badge.Value;
+                return BadgeKV.Value;
             }
         }
         return null;
     }
+
+    public bool DeleteAllDoors(int Key)
+    {
+        var badge = GetBadgeByKey(Key);
+        if(badge == null)
+        {
+            return false;
+        }
+        foreach (var door in badge.Doors)
+        {
+            badge.Doors.Remove(door);
+        }
+        return true;
+    }
+
+    public bool UpdateBadge(int Key, Badge newBadgeData)
+    {
+        var oldBadgeData = GetBadgeByKey(Key);
+        if(oldBadgeData != null)
+        {
+            oldBadgeData.Doors = newBadgeData.Doors;
+            return true;
+        }
+        return false;
+    }
+
+    
 }

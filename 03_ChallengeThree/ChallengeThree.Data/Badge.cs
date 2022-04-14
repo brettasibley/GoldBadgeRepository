@@ -7,10 +7,10 @@ public class Badge
 {
     public Badge() { }
 
-    public Badge(int id, List<string> door)
+    public Badge(List<string> doors)
     {
-        ID = id;
+        Doors = doors;
     }
-public int ID { get; set; }
-public string Door { get; set; }
+    public int ID { get; set; }
+    public List<string> Doors { get; set; }
 }
