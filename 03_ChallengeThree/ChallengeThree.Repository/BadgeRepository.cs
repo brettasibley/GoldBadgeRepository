@@ -19,6 +19,7 @@
     {
         return BadgeList;
     }
+
     // GetBadgeByKey is our helper method
     public Badge GetBadgeByKey(int Key)
     {
@@ -56,6 +57,4 @@
         }
         return false;
     }
-
-    
 }

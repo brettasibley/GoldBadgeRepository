@@ -32,4 +32,18 @@ public class ClaimRepositoryTest
         // Assert
         Assert.Equal(expected, actual);
     }
+
+    [Fact]
+    public void AddNewClaim_ShouldAddNewClaim()
+    {
+        ClaimRepository repository = new ClaimRepository();
+        var carClaim = new Claim(ClaimType.Car, "Car accident", 100m, new DateTime(2022, 4, 6), new DateTime(2022, 4, 7));
+
+        repository.AddNewClaimToQueue(carClaim);
+
+        var expected = 1;
+        var actual = repository.ViewAllClaims().Count;
+
+        Assert.Equal(expected, actual);
+    }
 }
