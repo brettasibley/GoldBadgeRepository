@@ -1,6 +1,6 @@
 ﻿public class BadgeRepository
 {
-    private readonly Dictionary<int, Badge> BadgeList = new Dictionary<int, Badge>();
+    private readonly Dictionary<int, Badge> Badges = new Dictionary<int, Badge>();
     private int _count = 0;
 
     public bool CreateNewBadge(Badge badge)
@@ -9,7 +9,7 @@
         {
             _count++;
             badge.ID = _count;
-            BadgeList.Add(badge.ID, badge);
+            Badges.Add(badge.ID, badge);
             return true;
         }
         return false;
@@ -17,13 +17,13 @@
 
     public Dictionary<int, Badge> GetAllBadges()
     {
-        return BadgeList;
+        return Badges;
     }
 
     // GetBadgeByKey is our helper method
     public Badge GetBadgeByKey(int Key)
     {
-        foreach(var BadgeKV in BadgeList)
+        foreach(var BadgeKV in Badges)
         {
             if(BadgeKV.Key == Key)
             {
@@ -56,5 +56,35 @@
             return true;
         }
         return false;
+    }
+
+    public bool AddDoorToBadge(int Key, string door)
+    {
+        var badge = GetBadgeByKey(Key);
+        if(badge == null)
+        {
+            return false;
+        }
+        var doors = badge.Doors;
+        if(!doors.Contains(door))
+        {
+            doors.Add(door);
+        }
+        return true;
+    }
+
+    public bool RemoveDoorFromBadge(int Key, string door)
+    {
+        var badge = GetBadgeByKey(Key);
+        if (badge == null)
+        {
+            return false;
+        }
+        var doors = badge.Doors;
+        if (doors.Contains(door))
+        {
+            doors.Remove(door);
+        }
+        return true;
     }
 }

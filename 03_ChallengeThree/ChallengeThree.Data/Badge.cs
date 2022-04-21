@@ -12,5 +12,5 @@ public class Badge
         Doors = doors;
     }
     public int ID { get; set; }
-    public List<string> Doors { get; set; }
+    public List<string> Doors { get; set; } = new List<string>();
 }
